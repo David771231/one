@@ -221,27 +221,6 @@
     padding: 4px;
   }
 
-  /* ===== Mobile Menu ===== */
-  .mobile-menu {
-    display: none;
-    background: var(--white);
-    padding: 16px 20px;
-    border-top: 1px solid var(--gray-200);
-  }
-  .mobile-menu.open {
-    display: block;
-  }
-  .mobile-menu a {
-    display: block;
-    padding: 10px 0;
-    color: var(--gray-700);
-    font-weight: 500;
-    border-bottom: 1px solid var(--gray-200);
-  }
-  .mobile-menu a:hover {
-    color: var(--primary);
-  }
-
   /* ===== Navigation ===== */
   .nav-bar {
     background: var(--white);
@@ -565,6 +544,7 @@
     font-weight: 700;
     padding: 2px 10px;
     border-radius: 999px;
+    z-index: 2;
   }
   .product-card .badge-tag.sale {
     background: var(--danger);
@@ -585,6 +565,8 @@
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
     font-size: 18px;
+    z-index: 2;
+    border: none;
   }
   .product-card .wishlist-btn:hover {
     transform: scale(1.1);
@@ -893,11 +875,6 @@
     flex-wrap: wrap;
     gap: 12px;
   }
-  .footer-bottom .payment-icons {
-    display: flex;
-    gap: 8px;
-    font-size: 20px;
-  }
 
   /* ===== Cart Drawer ===== */
   .cart-overlay {
@@ -924,12 +901,8 @@
     animation: slideIn 0.3s ease;
   }
   @keyframes slideIn {
-    from {
-      transform: translateX(100%);
-    }
-    to {
-      transform: translateX(0);
-    }
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
   }
   .cart-header {
     display: flex;
@@ -1075,128 +1048,70 @@
     transform: translateY(0);
   }
 
+  /* ===== Empty State ===== */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    grid-column: 1 / -1;
+  }
+  .empty-state .icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+  }
+  .empty-state h3 {
+    font-size: 20px;
+    color: var(--gray-700);
+    margin-bottom: 4px;
+  }
+  .empty-state p {
+    color: var(--gray-500);
+  }
+
   /* ===== Responsive ===== */
   @media (max-width: 1024px) {
-    .products-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .categories-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    .products-grid { grid-template-columns: repeat(3, 1fr); }
+    .categories-grid { grid-template-columns: repeat(4, 1fr); }
     .deal-section {
       grid-template-columns: 1fr;
       text-align: center;
       padding: 32px;
     }
-    .deal-section .deal-content .deal-price {
-      justify-content: center;
-    }
-    .countdown {
-      justify-content: center;
-    }
+    .deal-section .deal-content .deal-price { justify-content: center; }
+    .countdown { justify-content: center; }
   }
   @media (max-width: 768px) {
-    .search-bar {
-      max-width: 100%;
-      order: 3;
-      flex: 1 1 100%;
-    }
-    .header-top {
-      gap: 8px;
-    }
-    .header-actions .header-btn span {
-      display: none;
-    }
-    .hero-content {
-      grid-template-columns: 1fr;
-      text-align: center;
-    }
-    .hero-text h1 {
-      font-size: 28px;
-    }
-    .hero-text p {
-      margin: 0 auto 20px;
-    }
-    .hero-buttons {
-      justify-content: center;
-    }
-    .hero-image img {
-      max-height: 200px;
-    }
-    .features-strip {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .products-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .categories-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .testimonials-grid {
-      grid-template-columns: 1fr;
-    }
-    .footer-grid {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-    .footer-bottom {
-      flex-direction: column;
-      text-align: center;
-    }
-    .nav-bar ul {
-      justify-content: center;
-    }
-    .nav-bar a {
-      font-size: 12px;
-      padding: 6px 12px;
-    }
-    .filter-bar {
-      flex-direction: column;
-      align-items: stretch;
-    }
-    .filter-bar .sort-select {
-      margin-left: 0;
-    }
-    .filter-bar .filter-group {
-      justify-content: center;
-    }
-    .mobile-menu-toggle {
-      display: block;
-    }
-    .deal-section .deal-image img {
-      max-height: 200px;
-    }
+    .search-bar { max-width: 100%; order: 3; flex: 1 1 100%; }
+    .header-top { gap: 8px; }
+    .header-actions .header-btn span { display: none; }
+    .hero-content { grid-template-columns: 1fr; text-align: center; }
+    .hero-text h1 { font-size: 28px; }
+    .hero-text p { margin: 0 auto 20px; }
+    .hero-buttons { justify-content: center; }
+    .hero-image img { max-height: 200px; }
+    .features-strip { grid-template-columns: repeat(2, 1fr); }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .categories-grid { grid-template-columns: repeat(3, 1fr); }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .nav-bar ul { justify-content: center; }
+    .nav-bar a { font-size: 12px; padding: 6px 12px; }
+    .filter-bar { flex-direction: column; align-items: stretch; }
+    .filter-bar .sort-select { margin-left: 0; }
+    .filter-bar .filter-group { justify-content: center; }
+    .mobile-menu-toggle { display: block; }
+    .deal-section .deal-image img { max-height: 200px; }
   }
   @media (max-width: 480px) {
-    .products-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .categories-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .product-card .details {
-      padding: 10px 12px 12px;
-    }
-    .product-card .details .title {
-      font-size: 13px;
-    }
-    .product-card .details .price-row .current {
-      font-size: 16px;
-    }
-    .container {
-      padding: 0 12px;
-    }
-    .hero {
-      padding: 24px 0 32px;
-    }
-    .countdown .unit {
-      min-width: 44px;
-      padding: 6px 10px;
-    }
-    .countdown .unit .num {
-      font-size: 20px;
-    }
+    .products-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .categories-grid { grid-template-columns: repeat(2, 1fr); }
+    .product-card .details { padding: 10px 12px 12px; }
+    .product-card .details .title { font-size: 13px; }
+    .product-card .details .price-row .current { font-size: 16px; }
+    .container { padding: 0 12px; }
+    .hero { padding: 24px 0 32px; }
+    .countdown .unit { min-width: 44px; padding: 6px 10px; }
+    .countdown .unit .num { font-size: 20px; }
   }
 </style>
 </head>
@@ -1216,4 +1131,9 @@
 
       <div class="search-bar">
         <input type="search" id="searchInput" placeholder="Search for watches, brands, categories..." aria-label="Search">
-        <button id="searchBtn">🔍
+        <button id="searchBtn">🔍 Search</button>
+      </div>
+
+      <div class="header-actions">
+        <button class="header-btn" id="wishlistBtn">❤️ <span class="badge" id="wishCount" style="display:none">0</span></button>
+        <button class="header-btn cart-btn" id
