@@ -752,7 +752,7 @@
     </ul>
     <div class="header-actions">
       <div class="search-wrapper">
-        <i class="fas fa-search"></i>
+        <em class="fas fa-search"></em>
         <input type="text" id="searchInput" placeholder="Search..." />
       </div>
       <button class="icon-btn"><i class="far fa-heart"></i></button>
